@@ -21,20 +21,3 @@ The app is built with:
 ---
 
 ## 📂 Project Structure
-rice_yield_project/
-│
-├── model/
-│   └── rice_yield_model.pkl         ← Trained machine learning model (saved using Pickle)
-│
-├── templates/
-│   └── index.html                   ← Frontend HTML form (user input UI)
-│
-├── crop_yield_with_temp.csv         ← Cleaned dataset with added Temperature column
-│
-├── app.py                           ← Flask backend (loads model and handles prediction requests)
-│
-├── train_model.py                   ← Model training script (compares RF and GBR, saves best)
-│
-├── requirements.txt                 ← List of required Python libraries
-│
-├── README.md                        ← (Optional) Project overview and setup instructions
