@@ -1,0 +1,88 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rice Yield Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Rice Yield Predictor</h2>
+    <input type="number" id="year" placeholder="Crop Year">
+    <input type="number" id="area" placeholder="Area (hectares)">
+    <input type="number" id="rainfall" placeholder="Annual Rainfall (mm)">
+    <input type="number" id="fertilizer" placeholder="Fertilizer (kg)">
+    <input type="number" id="pesticide" placeholder="Pesticide (kg)">
+    <input type="number" id="temperature" placeholder="Temperature (°C)">
+    <button onclick="predictYield()">Predict Yield</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    async function predictYield() {
+      const data = {
+        Crop_Year: parseInt(document.getElementById('year').value),
+        Area: parseFloat(document.getElementById('area').value),
+        Annual_Rainfall: parseFloat(document.getElementById('rainfall').value),
+        Fertilizer: parseFloat(document.getElementById('fertilizer').value),
+        Pesticide: parseFloat(document.getElementById('pesticide').value),
+        Temperature: parseFloat(document.getElementById('temperature').value)
+      };
+
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      document.getElementById("result").innerText = result.Predicted_Yield
+        ? "Predicted Yield: " + result.Predicted_Yield + " tons/hectare"
+        : "Error: " + result.error;
+    }
+  </script>
+</body>
+</html>
