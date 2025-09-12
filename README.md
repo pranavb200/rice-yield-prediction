@@ -20,4 +20,6 @@ The app is built with:
 
 ---
 
-## 📂 Project Structure
+## 📂 Predict online 
+https://rice-yield-predictor.onrender.com
+
