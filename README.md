@@ -59,7 +59,7 @@ python train_model.py
 python app.py
 ```
 
-App will be live at 👉 [`http://127.0.0.1:5000/`]
+App will be live at 👉 
 (https://rice-yield-predictor.onrender.com)
 
 ---
